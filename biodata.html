@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Abizar</title>
+  <img src="Abizar.jpg" alt="foto profil-foto" class="foto-profil-tengah">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+
+     * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      color: #aad8ff;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+      cursor: pointer;
+    }
+
+    /* Aurora background */
+    #aurora {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(ellipse at center,
+        rgba(0, 50, 120, 0.8) 0%,
+        rgba(0, 20, 60, 0.6) 40%,
+        rgba(0, 10, 30, 0.3) 70%,
+        transparent 100%);
+      filter: blur(1px);
+      animation: auroraGlow 15s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes auroraGlow {
+      0% { transform: translateX(0) translateY(0) scale(1); opacity: 0.7; }
+      50% { transform: translateX(40px) translateY(20px) scale(1.05); opacity: 1; }
+      100% { transform: translateX(0) translateY(0) scale(1); opacity: 0.7; }
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .stars::before, .stars::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #4a90e2);
+    }
+
+    .stars::before {
+      top: 10%;
+      left: 5%;
+      box-shadow:
+        20vw 15vh white, 50vw 40vh white, 70vw 80vh white,
+        30vw 70vh white, 80vw 20vh white, 60vw 60vh white,
+        90vw 90vh white, 15vw 85vh white, 40vw 30vh white,
+        75vw 55vh white;
+      animation: twinkle 2s infinite alternate ease-in-out, moveStars1 10s linear infinite alternate;
+    }
+
+    .stars::after {
+      top: 30%;
+      left: 50%;
+      box-shadow:
+        10vw 50vh white, 35vw 10vh white, 55vw 25vh white,
+        80vw 65vh white, 90vw 10vh white, 25vw 80vh white,
+        50vw 75vh white, 70vw 35vh white, 85vw 50vh white,
+        40vw 90vh white;
+      animation: twinkle 3s infinite alternate ease-in-out, moveStars2 15s linear infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% {opacity: 0.3;}
+      50% {opacity: 1;}
+      100% {opacity: 0.3;}
+    }
+
+    @keyframes moveStars1 {
+      0% {transform: translate(0, 0);}
+      50% {transform: translate(15px, 10px);}
+      100% {transform: translate(0, 0);}
+    }
+
+    @keyframes moveStars2 {
+      0% {transform: translate(0, 0);}
+      50% {transform: translate(-20px, -15px);}
+      100% {transform: translate(0, 0);}
+    }
+
+    /* Navbar and content */
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      color: #aad8ff;
+      text-shadow: 0 0 5px #4a90e2;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 10;
+      font-size: 1rem;
+    }
+
+    label:hover,
+    input[type="radio"]:checked + label {
+      background: linear-gradient(90deg, #4a90e2, #2f80ed);
+      color: #121212;
+      box-shadow: 0 0 15px #4a90e2, 0 0 30px #1c4d8c;
+      border: 2px solid #4a90e2;
+    }
+
+    .content-container {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 20px;
+      background: rgba(26, 26, 26, 0.5); /* Transparan */
+      border-radius: 8px;
+      min-height: 180px;
+      color: #aad8ff;
+      box-shadow: 0 0 20px #4a90e2;
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    section {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      padding: 20px;
+    }
+
+    @keyframes fadeIn {from {opacity: 0; transform: translateY(15px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes slideFromLeft {from {opacity: 0; transform: translateX(-50px);} to {opacity: 1; transform: translateX(0);} }
+    @keyframes slideFromRight {from {opacity: 0; transform: translateX(50px);} to {opacity: 1; transform: translateX(0);} }
+    @keyframes zoomIn {from {opacity: 0; transform: scale(0.8);} to {opacity: 1; transform: scale(1);} }
+    @keyframes slideFromBottom {from {opacity: 0; transform: translateY(50px);} to {opacity: 1; transform: translateY(0);} }
+
+    #tab-home:checked ~ .content-container #home {display: block; animation: fadeIn 0.5s ease forwards;}
+    #tab-about:checked ~ .content-container #about {display: block; animation: slideFromLeft 0.5s ease forwards;}
+    #tab-pendidikan:checked ~ .content-container #pendidikan {display: block; animation: slideFromRight 0.5s ease forwards;}
+    #tab-hobi:checked ~ .content-container #hobi {display: block; animation: zoomIn 0.5s ease forwards;}
+    #tab-kontak:checked ~ .content-container #kontak {display: block; animation: slideFromBottom 0.5s ease forwards;}
+
+    /* Ripple effect */
+    .ripple {
+      position: fixed;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: rippleEffect 0.6s ease-out forwards;
+      z-index: 10000;
+      background: rgba(74, 144, 226, 0.5);
+      width: 30px;
+      height: 30px;
+    }
+
+    @keyframes rippleEffect {
+      0% {opacity: 0.7; transform: scale(0.5);}
+      100% {opacity: 0; transform: scale(2.5);}
+    }
+
+    /* Smoke trailing cursor */
+    .smoke {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      background: rgba(0, 255, 76, 0.3);
+      filter: blur(9px);
+      width: 30px;
+      height: 30px;
+      opacity: 0.6;
+      animation: fadeOutSmoke 1.2s forwards;
+      z-index: 9999;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes fadeOutSmoke {
+      0% {opacity: 0.6; transform: scale(1);}
+      100% {opacity: 0; transform: scale(2);}
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      label {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+      }
+      .content-container {
+        min-height: 200px;
+      }
+    }
+
+.profil-foto {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #4a90e2;
+  box-shadow: 0 0 10px #4a90e2;
+}
+
+.foto-profil-tengah {
+  display: block;
+  margin: 0 auto 20px auto; /* Tengah dan jarak bawah */
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4a90e2;
+  box-shadow: 0 0 10px #4a90e2;
+}
+
+  
+  </style>
+</head>
+<body>
+
+  <div id="aurora"></div>
+  <div class="stars"></div>
+
+  <!-- Tabs -->
+  <input type="radio" name="tabs" id="tab-home" checked>
+  <input type="radio" name="tabs" id="tab-about">
+  <input type="radio" name="tabs" id="tab-pendidikan">
+  <input type="radio" name="tabs" id="tab-hobi">
+  <input type="radio" name="tabs" id="tab-kontak">
+
+  <nav class="navbar">
+    <label for="tab-home">Home</label>
+    <label for="tab-about">About</label>
+    <label for="tab-pendidikan">Pendidikan</label>
+    <label for="tab-hobi">Hobi</label>
+    <label for="tab-kontak">Kontak</label>
+  </nav>
+
+  <div class="content-container">
+    <section id="home">
+      <h1>Selamat Datang</h1>
+      <p>Silakan pilih menu di atas untuk mengenal saya lebih jauh.</p>
+    </section>
+
+    <section id="about">
+      <h1>About Me</h1>
+      <p>Hai, namaku Muhammad Abizar. aku berusia 19 tahun dan aku gemar untuk melakukan hal-hal
+        baru yang menarik. terutama adalah mengoding web seperti ini. selain mengoding, aku juga memiliki
+        hobi bermain bola. tentu saja idolaku Cristiano Ronaldo, aku tidak akan pernah menyerah sebelum berhasil. tentu saja itu
+        adalah moto hidupku.
+      </p>
+    </section>
+
+    <section id="pendidikan">
+      <h1>Pendidikan</h1>
+      <p>D3 Manajemen Informatika - Universitas Syiah Kuala</p>
+      <p>NPM: 2408007010041</p>
+    </section>
+
+    <section id="hobi">
+      <h1>Hobi</h1>
+      <p>Membaca, Menulis, Bermain Bola</p>
+    </section>
+
+    <section id="kontak">
+      <h1>Kontak</h1>
+      <p><strong>Email:</strong> abizarjn@gmail.com</p>
+      <p><strong>Telp:</strong> 0821-7979-3306</p>
+    </section>
+  </div>
+
+  <footer>2025 Muhammad Abizar.</footer>
+
+  <script>
+    // Ripple effect
+    document.addEventListener('click', function(e) {
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      ripple.style.left = e.clientX + 'px';
+      ripple.style.top = e.clientY + 'px';
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+
+    // Smoke trail on mouse move
+    document.addEventListener('mousemove', e => {
+      const smoke = document.createElement('div');
+      smoke.classList.add('smoke');
+      smoke.style.left = e.clientX + 'px';
+      smoke.style.top = e.clientY + 'px';
+      document.body.appendChild(smoke);
+      setTimeout(() => smoke.remove(), 1200);
+    });
+  </script>
+
+</body>
+</html>
